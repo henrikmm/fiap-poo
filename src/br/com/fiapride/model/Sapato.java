@@ -1,45 +1,60 @@
 package br.com.fiapride.model;
-public class Sapato { // <-- Use o nome do SEU objeto    
-    // As características que você pensou    
-    public int tamanho;
-    public String marca;
-    public String material;
-    
+
+public class Sapato {
+    private int tamanho;
+    private TipoSapato tipo;
+    private boolean cadarco;
+
     public enum TipoSapato {
-    	TENIS,
-    	BOTA,
-    	SAPATO_SOCIAL,
-    	SANDALIA
+        TENIS,
+        BOTA,
+        SAPATO_SOCIAL,
+        SANDALIA
     }
-    
-    public TipoSapato tipo;
-    public boolean  cadarco;
-    
-    public void alterarTipo(TipoSapato novoTipo) {
-        if (novoTipo == null) {
-            System.out.println("Erro: o tipo do sapato não pode ser nulo.");
+
+    public int getTamanho() {
+        return this.tamanho;
+    }
+
+    public void setTamanho(int tamanho) {
+        if (tamanho <= 0) {
+            System.out.println("Erro: o tamanho do sapato deve ser maior que zero.");
             return;
         }
 
-        if (novoTipo == TipoSapato.SANDALIA && this.cadarco == true) {
-            System.out.println("Erro: sandália não pode possuir cadarço.");
+        this.tamanho = tamanho;
+    }
+
+    public TipoSapato getTipo() {
+        return this.tipo;
+    }
+
+    public void setTipo(TipoSapato novoTipo) {
+        if (novoTipo == null) {
+            System.out.println("Erro: o tipo do sapato nao pode ser nulo.");
+            return;
+        }
+
+        if (novoTipo == TipoSapato.SANDALIA && this.cadarco) {
+            System.out.println("Erro: sandalia nao pode possuir cadarco.");
             return;
         }
 
         this.tipo = novoTipo;
         System.out.println("Tipo alterado com sucesso para: " + this.tipo);
     }
-    
-    public void alterarCadarco(boolean possuiCadarco) {
-        if (this.tipo == TipoSapato.SANDALIA && possuiCadarco == true) {
-            System.out.println("Erro: sandália não pode possuir cadarço.");
+
+    public boolean isCadarco() {
+        return this.cadarco;
+    }
+
+    public void setCadarco(boolean possuiCadarco) {
+        if (this.tipo == TipoSapato.SANDALIA && possuiCadarco) {
+            System.out.println("Erro: sandalia nao pode possuir cadarco.");
             return;
         }
 
         this.cadarco = possuiCadarco;
-        System.out.println("Cadarço alterado com sucesso para: " + this.cadarco);
+        System.out.println("Cadarco alterado com sucesso para: " + this.cadarco);
     }
 }
-    
-   
-    

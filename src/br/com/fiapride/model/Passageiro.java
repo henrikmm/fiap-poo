@@ -1,41 +1,68 @@
 package br.com.fiapride.model;
 
-// A Classe define a estrutura. Ela não é o passageiro real, é apenas o modelo.
+// A Classe define a estrutura. Ela nao e o passageiro real, e apenas o modelo.
 public class Passageiro {
-    // Atributos (Características)
-    public String nome;
-    public String cpf;
-    public double saldo; 
-    // Nota: Por enquanto usamos 'public' para facilitar o aprendizado.
-    // Nas próximas aulas, aprenderemos a proteger esses dados.
-    
+    // Agora os dados estao protegidos dentro da classe.
+    private String nome;
+    private String cpf;
+    private double saldo;
+
     public Passageiro(String nome, String cpf) {
+        this.setNome(nome);
+        this.setCpf(cpf);
+        this.setSaldo(0.0);
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    private void setNome(String nome) {
         this.nome = nome;
-        this.cpf = cpf; // Novo Atributo
-        this.saldo = 0.00;
+    }
+
+    public String getCpf() {
+        return this.cpf;
+    }
+
+    private void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public double getSaldo() {
+        return this.saldo;
+    }
+
+    private void setSaldo(double valor) {
+        if (valor >= 0) {
+            this.saldo = valor;
+        } else {
+            System.out.println("Erro de seguranca: tentativa de definir saldo negativo bloqueada!");
+        }
     }
 
     public void adicionarSaldo(double valor) {
-        // Regra de negócio: O valor da recarga deve ser positivo
         if (valor <= 0) {
             System.out.println("Erro: O valor de recarga deve ser maior que zero.");
-            return; // Interrompe a execução do método
+            return;
         }
-        this.saldo += valor;
-        System.out.println("Recarga realizada. Novo saldo: " + this.saldo);
+
+        this.setSaldo(this.getSaldo() + valor);
+        System.out.println("Recarga realizada. Novo saldo: " + this.getSaldo());
     }
 
     public void pagarViagem(double custo) {
-        // Regra de negócio: O custo deve ser positivo e o saldo deve ser suficiente
         if (custo <= 0) {
-            System.out.println("Erro: O custo da viagem é inválido.");
+            System.out.println("Erro: O custo da viagem e invalido.");
             return;
         }
-        if (this.saldo < custo) {
+
+        if (this.getSaldo() < custo) {
             System.out.println("Erro: Saldo insuficiente para realizar a viagem.");
             return;
         }
-        this.saldo -= custo;
-        System.out.println("Viagem paga. Saldo restante: " + this.saldo);
+
+        this.setSaldo(this.getSaldo() - custo);
+        System.out.println("Viagem paga. Saldo restante: " + this.getSaldo());
     }
 }
