@@ -1,72 +1,34 @@
 package br.com.fiapride.model;
 
 public class Veiculo {
-    // Atributos privados para proteger o estado do objeto.
-    private String dono;
     private String placa;
-    private double gasolina;
+    private String modelo;
 
-    public String getDono() {
-        return this.dono;
-    }
-
-    public void definirDono(String dono) {
-        if (dono == null || dono.trim().isEmpty()) {
-            System.out.println("Erro: o nome do dono nao pode ser vazio.");
-            return;
-        }
-
-        this.dono = dono;
+    public Veiculo(String placa, String modelo) {
+        this.setPlaca(placa);
+        this.modelo = modelo;
+        System.out.println("Registro inicial: Um " + this.modelo + " nasceu com a placa " + this.placa);
     }
 
     public String getPlaca() {
         return this.placa;
     }
 
-    public void definirPlaca(String placa) {
-        if (placa == null || placa.trim().isEmpty()) {
-            System.out.println("Erro: a placa nao pode ser vazia.");
-            return;
-        }
-
-        this.placa = placa;
+    public String getModelo() {
+        return this.modelo;
     }
 
-    public double getGasolina() {
-        return this.gasolina;
+    public void atualizarPlaca(String novaPlaca) {
+        System.out.println("Solicitada atualizacao de placa no Detran para o veiculo " + this.modelo + "...");
+        this.setPlaca(novaPlaca);
     }
 
-    public void adicionarGasolina(double valor) {
-        if (valor <= 0) {
-            System.out.println("Erro: a quantidade de gasolina deve ser maior que zero.");
-            return;
-        }
-
-        this.setGasolina(this.getGasolina() + valor);
-        System.out.println("Abastecimento realizado. Gasolina atual: " + this.getGasolina());
-    }
-
-    public void gastarGasolina(double valor) {
-        if (valor <= 0) {
-            System.out.println("Erro: o gasto de gasolina deve ser maior que zero.");
-            return;
-        }
-
-        if (this.getGasolina() < valor) {
-            System.out.println("Erro: gasolina insuficiente para realizar o gasto.");
-            return;
-        }
-
-        this.setGasolina(this.getGasolina() - valor);
-        System.out.println("Consumo registrado. Gasolina restante: " + this.getGasolina());
-    }
-
-    // Apenas a propria classe altera o combustivel diretamente.
-    private void setGasolina(double gasolina) {
-        if (gasolina >= 0) {
-            this.gasolina = gasolina;
+    private void setPlaca(String novaPlaca) {
+        if (novaPlaca != null && !novaPlaca.trim().isEmpty()) {
+            this.placa = novaPlaca;
+            System.out.println("Sucesso: A placa agora e " + this.placa);
         } else {
-            System.out.println("Erro de seguranca: tentativa de definir gasolina negativa bloqueada.");
+            System.out.println("Erro de validacao: a placa informada e invalida.");
         }
     }
 }

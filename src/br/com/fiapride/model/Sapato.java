@@ -12,11 +12,30 @@ public class Sapato {
         SANDALIA
     }
 
+    public Sapato(int tamanho, TipoSapato tipo, boolean cadarco) {
+        this.setTamanho(tamanho);
+        this.setCadarco(cadarco);
+        this.setTipo(tipo);
+        System.out.println("Sapato criado com tamanho " + this.tamanho + ", tipo " + this.tipo + " e cadarco " + this.cadarco + ".");
+    }
+
     public int getTamanho() {
         return this.tamanho;
     }
 
-    public void setTamanho(int tamanho) {
+    public TipoSapato getTipo() {
+        return this.tipo;
+    }
+
+    public boolean isCadarco() {
+        return this.cadarco;
+    }
+
+    public void ajustarCadarco(boolean possuiCadarco) {
+        this.setCadarco(possuiCadarco);
+    }
+
+    private void setTamanho(int tamanho) {
         if (tamanho <= 0) {
             System.out.println("Erro: o tamanho do sapato deve ser maior que zero.");
             return;
@@ -25,11 +44,7 @@ public class Sapato {
         this.tamanho = tamanho;
     }
 
-    public TipoSapato getTipo() {
-        return this.tipo;
-    }
-
-    public void setTipo(TipoSapato novoTipo) {
+    private void setTipo(TipoSapato novoTipo) {
         if (novoTipo == null) {
             System.out.println("Erro: o tipo do sapato nao pode ser nulo.");
             return;
@@ -41,14 +56,10 @@ public class Sapato {
         }
 
         this.tipo = novoTipo;
-        System.out.println("Tipo alterado com sucesso para: " + this.tipo);
+        System.out.println("Tipo definido com sucesso para: " + this.tipo);
     }
 
-    public boolean isCadarco() {
-        return this.cadarco;
-    }
-
-    public void setCadarco(boolean possuiCadarco) {
+    private void setCadarco(boolean possuiCadarco) {
         if (this.tipo == TipoSapato.SANDALIA && possuiCadarco) {
             System.out.println("Erro: sandalia nao pode possuir cadarco.");
             return;
