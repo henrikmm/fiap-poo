@@ -8,3 +8,6 @@
 # Ignorar pastas de build e dependências locais
 bin/
 target/
+
+# Ignorar materiais de estudo locais, caso a pasta seja movida para dentro do repo
+/Aulas/

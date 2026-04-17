@@ -1,20 +1,35 @@
 package br.com.fiapride.main;
 
-import br.com.fiapride.model.Sapato;
+import br.com.fiapride.model.Bota;
+import br.com.fiapride.model.Dono;
+import br.com.fiapride.model.Tenis;
 
 public class TesteSapato {
 
     public static void main(String[] args) {
-        Sapato sapato1 = new Sapato(40, Sapato.TipoSapato.TENIS, true);
-        Sapato sapato2 = new Sapato(42, Sapato.TipoSapato.SANDALIA, false);
+        Dono dono1 = new Dono("Marina Costa", "444.444.444-44");
+        Dono dono2 = new Dono("Pedro Lima", "555.555.555-55");
 
-        System.out.println("--- Testes dos metodos da classe Sapato ---");
+        Tenis tenisCorrida = new Tenis(40, true, dono1, true);
+        Bota botaTrilha = new Bota(42, true, dono2, true);
 
-        sapato1.ajustarCadarco(false);
-        sapato2.ajustarCadarco(true);
+        System.out.println("--- Testes da hierarquia de Sapato ---");
+
+        tenisCorrida.ajustarCadarco(false);
+        botaTrilha.ajustarCadarco(true);
 
         System.out.println("--- Estado final dos sapatos ---");
-        System.out.println("Tipo do sapato: " + sapato1.getTipo() + " | tamanho: " + sapato1.getTamanho() + " | possui cadarco: " + sapato1.isCadarco());
-        System.out.println("Tipo do sapato: " + sapato2.getTipo() + " | tamanho: " + sapato2.getTamanho() + " | possui cadarco: " + sapato2.isCadarco());
+        System.out.println(
+            "Tenis do dono " + tenisCorrida.getDono().getNome()
+                + " | tamanho: " + tenisCorrida.getTamanho()
+                + " | possui cadarco: " + tenisCorrida.isCadarco()
+                + " | amortecimento: " + tenisCorrida.isAmortecimento()
+        );
+        System.out.println(
+            "Bota do dono " + botaTrilha.getDono().getNome()
+                + " | tamanho: " + botaTrilha.getTamanho()
+                + " | possui cadarco: " + botaTrilha.isCadarco()
+                + " | cano alto: " + botaTrilha.isCanoAlto()
+        );
     }
 }
